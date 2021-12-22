@@ -1,0 +1,19 @@
+<?php
+namespace Malla\Http\Meta\Translations;
+
+/*
+ *---------------------------------------------------------
+ * ©IIPEC
+ * Santo Domingo República Dominicana.
+ *---------------------------------------------------------
+*/
+
+class :name {
+
+   public function header() {
+      :header
+   }
+   public function translations() {
+      :translations
+   }
+}
