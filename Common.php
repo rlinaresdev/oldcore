@@ -12,14 +12,14 @@ define("__MALLA__", realpath(__DIR__."/../../../")."/");
 define("__HTTP__", __MALLA__."src/Http/");
 define( "__TMP__", __MALLA__."src/System/Tmp/" );
 
-$this->app->bind( "Malla", function($app) {
+$this->app->bind( "Core", function($app) {
 	return new \Malla\Core\Support\Malla(
 		new \Malla\Core\Support\Bootstrap($app)
 	);
 });
 
 
-$this->app["malla"] = Malla::load();
+$this->app["core"] = Malla::load();
 
 Malla::load( "finder", new \Malla\Core\Support\Finder );
 Malla::load( "loader", new \Malla\Core\Support\Loader($this->app) );
@@ -36,7 +36,7 @@ Malla::load( "model", new \Malla\Core\Model\Core);
 
 /*
 * Module */
-Malla::load( "theme", new \Malla\Core\Support\Theme( $this->app["malla"] ) );
+Malla::load( "theme", new \Malla\Core\Support\Theme( $this->app["core"] ) );
 
 /*
 * HELPERS
@@ -44,7 +44,7 @@ Malla::load( "theme", new \Malla\Core\Support\Theme( $this->app["malla"] ) );
 if( !function_exists("malla") ) {
 
 	function malla( $key=null, $args=[], $merge=[] ) {
-		return app("malla")->load($key, $args, $merge);
+		return app("core")->load($key, $args, $merge);
 	}
 }
 
@@ -63,7 +63,7 @@ if( !function_exists("__url") ) {
 
 if( !function_exists("is_stable") ) {
 	function is_stable($type, $slug) {
-		return app("malla")->isAppStart($type, $slug);
+		return app("core")->isAppStart($type, $slug);
 	}
 }
 

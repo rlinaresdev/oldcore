@@ -6,11 +6,21 @@ Core V-1.0 | Sistema Central para Malla
 Urls etiquetada
 
 ```php
-	
-	Malla::load("urls")->addTag("urls", [
+
+	Core::load("urls")->addTagUrl([
 		"__path"	=> request()->path(),
 		"__theme"	=> "admin/theme/lists"
 	]);
+
+```
+
+### URLS
+
+```php
+
+   Core::addTagPath([
+      "__neblina"     => public_path()."/__malladir/admin/theme/neblina",
+   ]);
 
 ```
 
@@ -23,21 +33,21 @@ Utilizando la ruta etiquetada
 	<a href="{{__url("__theme")}}"> Plantillas </a>
 ```
 
-### HELPER
-
 Instaciar malla desde un proveedor de servicio.
 
 ```php
-function register() {
-	$malla = $this->app["malla"];
-}
+
+   function register() {
+   	$core = $this->app["core"];
+   }
 
 ```
+
 Desde el helper malla
 
 ```php
 
-$malla = malla();
+   $malla = malla();
 
 ```
 
@@ -45,7 +55,14 @@ $malla = malla();
 Llamando una libraría en especifico.
 
 ```php
-$map = malla("finder")->map("../", 1);
+
+   $LISTS      = Core::load("finder")->map("../", 1); // Finder Library
+
+   $URLS       = Core::load("urls"); // Urls Library
+
+   $COREDB     = Core::load("coredb"); // Core DB Library
+
+   $COREMODEL  = Core::load("model"); // Core Model Library
 
 ```
 
@@ -53,9 +70,7 @@ $map = malla("finder")->map("../", 1);
 
 ```php
 
-malla("alianame", new \Vendor\Library\ClassName());
-
-malla("alianame", \Vendor\Library\ClassName::class);
+   Core::load( "alianame", new \Vendor\Library\ClassName() );
 
 ```
 
@@ -64,6 +79,33 @@ malla("alianame", \Vendor\Library\ClassName::class);
 
 ```php
 
-malla("loader")->run(\Vendor\Library\Kernel::class);
+   Core::run( \Vendor\Library\Kernel::class );
+
+```
+
+## HELPERS
+
+Listar los segmentos de una url en un arreglo
+
+-- Los segmentos de una url el un arreglo lineal en una urls
+-- http://domain.lc/segment1/segment21
+
+```php
+
+   $segments = __segments();
+
+   if( in_array( "portada", $segments ) ) {
+      // Si portada se encuentra en el arreglo la salida es true
+   }
+
+```
+
+Evaluar los segmento de la url
+
+```php
+
+   if( __segment(1, "portada") ) {
+      // Si el segmento 1 es igual a portada la salida es true      
+   }
 
 ```
