@@ -23,19 +23,19 @@ class Info {
 
    public function depends() {
      return [
-      \Malla\Guard\Info::class,
-      \Malla\Alert\Info::class,
-      \Malla\User\Info::class,
-      \Malla\Menu\Info::class,
-      \Malla\Dev\Info::class,
-      \Malla\Cms\Info::class,
-      \Malla\Widget\Info::class,
-      \Malla\Skin\Info::class,
-
-      \Malla\Info::class,
-      \Malla\Admin\Info::class,
-
-      \Malla\Theme\Rosy\Info::class,
+      // \Malla\Guard\Info::class,
+      // \Malla\Alert\Info::class,
+      // \Malla\User\Info::class,
+      // \Malla\Menu\Info::class,
+      // \Malla\Dev\Info::class,
+      // \Malla\Cms\Info::class,
+      // \Malla\Widget\Info::class,
+      // \Malla\Skin\Info::class,
+      //
+      // \Malla\Info::class,
+      // \Malla\Admin\Info::class,
+      //
+      // \Malla\Theme\Rosy\Info::class,
      ];
 
    }

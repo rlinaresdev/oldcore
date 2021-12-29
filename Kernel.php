@@ -22,7 +22,7 @@ class Kernel {
 	}
 
 	public function handler($app) {
-
+      
 		$app->bind("Zip", function($app) {
 			return new \Malla\Core\Support\Zip($app, new ZipArchive());
 		});

@@ -19,8 +19,8 @@ class SetCommand extends Command {
 
   protected $malla;
 
-  protected $signature     = 'malla {accion : init|reset|reload|update|start|stop}';
-  protected $description   = 'Set Malla';
+  protected $signature     = 'core {actions : init|reset|reload|update|start|stop}';
+  protected $description   = 'Core Aplication Command';
 
   public function __construct( Info $malla, TableSchema $schema, Core $core ) {
 
@@ -51,7 +51,6 @@ class SetCommand extends Command {
   }
 
   public function init() {
-
     $this->info(" Inicializando");
 
     if( is_array(($data = $this->schema->up())) ) {
@@ -70,7 +69,6 @@ class SetCommand extends Command {
   }
 
   public function reset() {
-
     $this->info(" Reset schema");
     $this->depends("uninstall");
 
@@ -79,7 +77,6 @@ class SetCommand extends Command {
         $this->info( $line );
       }
     }
-
   }
 
    public function reload() {

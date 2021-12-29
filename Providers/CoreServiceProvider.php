@@ -24,19 +24,19 @@ class CoreServiceProvider extends CoreAccessor {
 
 		/*
 		* [0] => CORE */
-		$this->app["malla"]->load("loader")->register("core");
+		$this->app["core"]->load("loader")->register("core");
 
 		/*
 		* [1] => LIBRARIES */
-		$this->app["malla"]->load("loader")->register("library");
+		$this->app["core"]->load("loader")->register("library");
 
 		/*
 		* [2] => PACKAGES */
-		$this->app["malla"]->load("loader")->register("package");
+		$this->app["core"]->load("loader")->register("package");
 
 		/*
 		* [3] => PLUGINS */
-		$this->app["malla"]->load("loader")->register("plugin");
+		$this->app["core"]->load("loader")->register("plugin");
   }
 
 }

@@ -10,5 +10,5 @@
 use Illuminate\Support\Facades\Facade;
 
 class Core extends Facade {
-	public static function getFacadeAccessor(){return "Malla";}	
+	public static function getFacadeAccessor(){return "Core";}	
 }

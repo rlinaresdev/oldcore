@@ -19,31 +19,30 @@ $this->app->bind( "Core", function($app) {
 });
 
 
-$this->app["core"] = Malla::load();
+$this->app["core"] = Core::load();
 
-Malla::load( "finder", new \Malla\Core\Support\Finder );
-Malla::load( "loader", new \Malla\Core\Support\Loader($this->app) );
-Malla::load( "coredb", new \Malla\Core\Support\StorDB( $this->app["db"] ) );
-Malla::load( "urls", new \Malla\Core\Support\Urls($this->app) );
-Malla::load( "http", new \Malla\Core\Support\Http($this->app) );
+Core::load( "finder", new \Malla\Core\Support\Finder );
+Core::load( "loader", new \Malla\Core\Support\Loader($this->app) );
+Core::load( "coredb", new \Malla\Core\Support\StorDB( $this->app["db"] ) );
+Core::load( "urls", new \Malla\Core\Support\Urls($this->app) );
+Core::load( "http", new \Malla\Core\Support\Http($this->app) );
 
-Malla::load( "locale", new \Malla\Core\Support\Locale(
+Core::load( "locale", new \Malla\Core\Support\Locale(
 	$this->app["db"],
 	$this->app["files"]
 ));
 
-Malla::load( "model", new \Malla\Core\Model\Core);
+Core::load( "model", new \Malla\Core\Model\Core);
 
 /*
 * Module */
-Malla::load( "theme", new \Malla\Core\Support\Theme( $this->app["core"] ) );
+Core::load( "theme", new \Malla\Core\Support\Theme( $this->app["core"] ) );
 
 /*
 * HELPERS
 * Helper Malla */
-if( !function_exists("malla") ) {
-
-	function malla( $key=null, $args=[], $merge=[] ) {
+if( !function_exists("core") ) {
+	function core( $key=null, $args=[], $merge=[] ) {
 		return app("core")->load($key, $args, $merge);
 	}
 }
@@ -55,8 +54,7 @@ if( !function_exists("__path") ) {
 }
 
 if( !function_exists("__url") ) {
-
-	function __url($path = null, $parameters = [], $secure = null) {
+	function __url( $path = null, $parameters = [], $secure = null ) {
 		return malla("urls")->url($path, $parameters, $secure);
 	}
 }
@@ -82,17 +80,15 @@ if(!function_exists("__segments")) {
 	}
 }
 
-
-
 if( is_stable("core", "core") ) {
-	$this->map( $this->app["malla"] );
+	$this->map( $this->app["core"] );
 }
 
 /*
 * LOCALE */
 if( function_exists("__islocale") ) {
 	function __islocale($slug, $kernel) {
-		return malla("locale")->isLocale($slug, $kernel);
+		return core("locale")->isLocale($slug, $kernel);
 	}
 }
 

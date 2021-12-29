@@ -27,8 +27,8 @@ class Loader {
 
 		if( \Schema::hasTable("apps") ) {
 
-			if(self::$app["malla"]->load("coredb")->has("core", "core")) {
-				return (self::$app["malla"]->load("coredb")->get("core", "core")->activated == 1);
+			if(self::$app["core"]->load("coredb")->has("core", "core")) {
+				return (self::$app["core"]->load("coredb")->get("core", "core")->activated == 1);
 			}
 
 		}
@@ -93,13 +93,13 @@ class Loader {
 
 		if( in_array($type, ["core", "library", "package", "plugin"]) ) {
 
-			if( !empty( $stors = self::$app["malla"]->load("coredb")->getType($type) ) ) {
+			if( !empty( $stors = self::$app["core"]->load("coredb")->getType($type) ) ) {
 
 				foreach ($stors as $app ) {
 					if($app->activated == 1) {
 						/*
 						* LOAD APP RESOURCES */
-						if( !empty( ($configs = self::$app["malla"]->load("coredb")->getConfig($type, $app)) ) ) {
+						if( !empty( ($configs = self::$app["core"]->load("coredb")->getConfig($type, $app)) ) ) {
 							foreach ( $configs as $config ) {
 								config()->set($config->key, $config->value);
 							}
