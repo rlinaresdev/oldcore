@@ -1,6 +1,22 @@
 ## CORE
 Core V-1.0 | Sistema Central para Malla
 
+### Install
+```bash
+composer require rlinaresdev/core
+```
+
+### Registro
+El `app.php`
+
+```php
+   // Provider
+   Malla\Core\Providers\CoreServiceProvider::class,
+
+   // Facade
+   'Core' => Malla\Core\Facade\Core::class,
+```
+
 ### URLS
 
 Urls etiquetada
