@@ -10,8 +10,11 @@ namespace Malla\Core;
 use \ZipArchive;
 
 class Kernel {
+
 	public function providers() {
 		return [
+         \Malla\Providers\MallaServiceProvider::class,
+         \Malla\Providers\RouteServiceProvider::class
 		];
 	}
 
@@ -22,11 +25,12 @@ class Kernel {
 	}
 
 	public function handler($app) {
-      
+
 		$app->bind("Zip", function($app) {
 			return new \Malla\Core\Support\Zip($app, new ZipArchive());
 		});
 
 		$app["zip"] = \Malla\Core\Facade\Zip::load();
+
 	}
 }

@@ -25,10 +25,11 @@ class SetCommand extends Command {
   public function __construct( Info $malla, TableSchema $schema, Core $core ) {
 
     parent::__construct();
-
+    
     $this->core     = $core;
     $this->malla    = $malla;
     $this->schema   = $schema;
+
   }
 
   public function handle() {
@@ -39,7 +40,7 @@ class SetCommand extends Command {
     $this->info("© ".$package["description"]);
     $this->info(str_repeat('--', 30));
 
-    $method = $this->argument("accion");
+    $method = $this->argument("actions");
 
     if( method_exists($this, $method) ) {
 			return $this->{$method}();

@@ -14,12 +14,34 @@ use Illuminate\Support\Facades\Schema;
 class TableSchema {
 
     protected $tables = [
+      "routes",
       "apps",
       "apps_info",
       "apps_config",
       "apps_meta",
       "apps_locale"
     ];
+
+    public function routes() {
+      Schema::create('routes', function ($table) {
+         $table->increments('id');
+
+         $table->string("domain", 30)->nullable();
+         $table->string("method", 30);
+         $table->string("prefix", 30)->default('/');
+         $table->string("uri", 30)->default('/');
+         $table->string("name", 30)->nullable();
+         $table->string("action", 30);
+
+         $table->string("middleware", 30)->nullable();
+
+         $table->boolean("activated", 1)->default(1);
+
+         $table->timestamps();
+
+         $table->engine = 'InnoDB';
+      });
+    }
 
     public function apps() {
 
